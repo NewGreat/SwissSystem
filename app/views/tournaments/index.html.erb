@@ -1,0 +1,32 @@
+<h1>List of tournaments. Finished and ongoing.</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number of players</th>
+      <th>Number of rounds</th>
+      <th>Current round</th>
+      <th>Finished</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.name %></td>
+        <td><%= tournament.players.count %></td>
+        <td><%= tournament.max_round_number %></td>
+        <td><%= tournament.current_round_number %></td>
+        <td><%= tournament.show_if_finished %></td>
+        <td><%= link_to 'Show', tournament_path(id: tournament.id) %></td>
+        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Start new tournament', new_tournament_path, class: "btn" %>

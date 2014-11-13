@@ -1,2 +1,6 @@
 <%# add navigation links to this file %>
-<li><%= link_to 'About', page_path('about') %></li>
+<% if current_tournament %>
+  <li><%= link_to 'Current tournament\'s last round', tournament_path(current_tournament) %></li>
+  <li><%= link_to 'Player standings',  players_path(tournament_id: current_tournament.id) %></li>
+<% end %>
+  <li><%= link_to 'Start new tournament', new_tournament_path %></li>

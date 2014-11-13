@@ -1,0 +1,19 @@
+<% @round.tournament.rounds.each do |round| %>
+  <%= link_to "Round number #{round.round_number}", round_path(round) %>
+  <br>
+<% end %>
+<% if @round %>
+  <% @round.challanges.each do |challange| %>
+
+    <div>
+    <%= challange.player1.full_name %> 
+    <% if challange.player2 %>
+      is playing against <%= challange.player2.full_name %>
+    <% else %>
+      has won by a bye
+    <% end %>
+    <%= render 'challanges/form', challange: challange %>
+    </div>
+
+  <% end %>
+<% end %>

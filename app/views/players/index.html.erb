@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Sum of victory points</th>
+      <th>Sum of battle points</th>
+      <th>games played</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each_with_index do |player,i| %>
+      <tr>
+        <td><%= "#{i+1}"%></td>
+        <td><%= player.name %></td>
+        <td><%= player.surname %></td>
+        <td><%= player.victory_points_sum %></td>
+        <td><%= player.battle_points_sum %></td>
+        <td><%= player.challanges_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

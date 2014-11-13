@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  resources :tournaments, except: :destroy do 
+    member do
+      get :start
+    end
+  end
+  resources :rounds, only: :show
+  resources :challanges, only: :update
+  resources :players, only: :index
+  root to: 'tournaments#index'
 end

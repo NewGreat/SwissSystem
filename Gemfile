@@ -13,6 +13,11 @@ gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'high_voltage'
 gem 'therubyracer', :platform=>:ruby
+gem 'traceroute'
+gem 'draper'
+gem 'will_paginate', '~> 3.0'
+gem 'composite_primary_keys'
+gem 'deadweight'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
