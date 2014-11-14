@@ -2,14 +2,14 @@ class Challange < ActiveRecord::Base
 
   validate :cannot_have_incorrect_points, unless: :odd?, on: :update
   
-  # after_create :mark_game_as_yet_unfinished, unless: :odd?
   after_create :mark_bye, if: :odd?
   after_update :update_player_sum 
   after_update :mark_round_as_finished, if: :all_challanges_finished?
+
   belongs_to :round
-  # belongs_to :tournament,  through: :round is not a method in rails. 
+                         # belongs_to :tournament,  through: :round is not a method in rails. 
                          # I have overriden it by method current_tournament
-  belongs_to :player1, class_name: 'Player'
+  belongs_to :player1, class_name: 'Player' 
   belongs_to :player2, class_name: 'Player'
 
   delegate :all_challanges_finished?, :tournament, to: :round, allow_nil: true
@@ -19,7 +19,7 @@ class Challange < ActiveRecord::Base
     round.tournament
   end
 
-  def set_as_finished #marka as finished
+  def set_as_finished 
     self.finished = true
   end
   private 
@@ -40,15 +40,6 @@ class Challange < ActiveRecord::Base
 
   def correct_battle_points?
     player1_battle_points + player2_battle_points == 0
-  end
-
-  def mark_game_as_yet_unfinished
-    self.player1_victory_points = 0
-    self.player1_battle_points = 0
-    self.player2_victory_points = 0
-    self.player2_battle_points = 0
-    self.finished = false
-    save
   end
 
   def mark_round_as_finished

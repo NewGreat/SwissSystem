@@ -1,6 +1,4 @@
 class Player < ActiveRecord::Base
-
-  # after_create :set_sums
   
   validates :name, :surname, presence: true
 
@@ -8,6 +6,8 @@ class Player < ActiveRecord::Base
   
   # has_many challanges has been overriden by method of the name challanges. 
   # Rails lack methods to parralelly bond tables with 2 different keys at once.
+  # cache_counter is also not due to same problems. Instead challange_counter column is incremented via challanges table
+  
   def challanges
     Tournament.find(tournament_id).challanges.where("player2_id = #{id} OR player1_id = #{id}")
   end
@@ -30,12 +30,4 @@ class Player < ActiveRecord::Base
     "#{name} #{surname}"
   end
 
-  private
-
-  def set_sums
-    self.battle_points_sum = 0
-    self.victory_points_sum = 0
-    challanges_count = 0
-    save
-  end
 end

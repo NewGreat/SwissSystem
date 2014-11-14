@@ -5,27 +5,16 @@
     <%= link_to "Round number #{round.round_number}", round_path(round) %>
     <br>
   <% end %>
+  
   <%= link_to "Show standings", players_path(tournament_id: @tournament.id) %>
-  <% if @active_round %>
-  <div class="row">
-    <% @active_round.challanges.each do |challange| %>
-      <div class="small-6 columns">
-        <%= challange.player1.full_name %> 
-        <% if challange.player2 %>
-          is playing against <%= challange.player2.full_name %>
-        <% else %>
-          has won by a bye
-        <% end %>
-        <%= render 'challanges/form', challange: challange %>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-<ul>
-  <% @tournament.players.each do |player| %>
-  <li>Player: <%= player.full_name %> </li>
+  <% if @tournament.current_round %>
+    <div class="challanges_table">
+      <%= render 'challanges_table', current_round: @tournament.current_round %>
+    </div>
+  <% else %>
+    <div class="players_table">
+      <%= render 'players_table', tournament: @tournament %>
+    </div>
+
   <% end %>
-</ul>
-<%= link_to 'Start', start_tournament_path(@tournament) %>
-<% end %>
 <% end %>

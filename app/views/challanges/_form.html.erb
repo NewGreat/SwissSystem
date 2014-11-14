@@ -1,38 +1,40 @@
-<%= form_for (challange) do |f| %>
-  <div class="small-6 columns">
-    <div class="name">
-    <%="#{challange.player1.full_name}'s" %>
-    </div>
-    <div class="field">
-      <%= f.label "victory points" %><br>
-      <%= f.text_field :player1_victory_points, disabled:challange.finished %>
-    </div>
-    <div class="field">
-      <%= f.label "battle points" %><br>
-      <%= f.text_field :player1_battle_points, disabled:challange.finished %>
-    </div>
-  </div>
-  <% if challange.player2 %>
-  <div class="small-6 columns">
-    <div class="name">
-    <%="#{challange.player2.full_name}'s" %>
-    </div>
-    <div class="field">
-      <%= f.label "victory points" %><br>
-      <%= f.text_field :player2_victory_points, disabled:challange.finished %>
-    </div>
-    <div class="field">
-      <%= f.label "battle points" %><br>
-      <%= f.text_field :player2_battle_points, disabled:challange.finished %>
-    </div>
-  </div>
-
-  <% end %>
-  <%unless challange.finished %>
-  <div class="small-12 columns">
-      <div class="actions">
-        <%= f.submit "Submit results"%>
+<div class="challange">
+  <%= form_for (challange) do |f| %>
+    <div class="small-6 columns">
+      <div class="name">
+      <%="#{challange.player1.full_name}'s" %>
+      </div>
+      <div class="field">
+        <%= f.label "victory points" %><br>
+        <%= f.text_field :player1_victory_points, disabled:challange.finished %>
+      </div>
+      <div class="field">
+        <%= f.label "battle points" %><br>
+        <%= f.text_field :player1_battle_points, disabled:challange.finished %>
       </div>
     </div>
+    <% if challange.player2 %>
+    <div class="small-6 columns">
+      <div class="name">
+      <%="#{challange.player2.full_name}'s" %>
+      </div>
+      <div class="field">
+        <%= f.label "victory points" %><br>
+        <%= f.text_field :player2_victory_points, disabled:challange.finished %>
+      </div>
+      <div class="field">
+        <%= f.label "battle points" %><br>
+        <%= f.text_field :player2_battle_points, disabled:challange.finished %>
+      </div>
+    </div>
+
+    <% end %>
+    <%unless challange.finished %>
+    <div class="small-12 columns">
+        <div class="actions">
+          <%= f.submit "Submit results"%>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

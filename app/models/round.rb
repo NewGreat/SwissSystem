@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   
-  # after_create :not_finished
+
   belongs_to :tournament
   has_many :challanges
 
@@ -46,10 +46,4 @@ class Round < ActiveRecord::Base
     tournament.next_round
   end
 
-  private
-
-  def not_finished
-    self.finished = false
-    save
-  end
 end

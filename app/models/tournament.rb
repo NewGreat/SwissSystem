@@ -1,7 +1,7 @@
+require 'json'
+
 class Tournament < ActiveRecord::Base
 
-  # after_create :not_finished
-  before_save :set_time
   attr_accessor :hours, :minutes
 
   has_many :rounds
@@ -24,8 +24,11 @@ class Tournament < ActiveRecord::Base
   end
 
   def show_if_finished
-    "finished" if finished
-    "ongoing" unless finished
+    if finished?
+      "finished" 
+    else
+      "ongoing" 
+    end
   end
 
   def current_round_number
@@ -43,7 +46,11 @@ class Tournament < ActiveRecord::Base
   end
 
   def results
-    players.order('battle_points_sum victory_points_sum')
+    players.order(battle_points_sum: :desc, victory_points_sum: :desc)
+  end
+
+  def set_time(hours, minutes)
+    self.time = hours.to_i*60 + minutes.to_i
   end
 
   private
@@ -56,16 +63,21 @@ class Tournament < ActiveRecord::Base
   def finish
     self.finished = true
     save
-    # redirect_to players_path(tournament_id: id)
+    send_json(generate_results_json)
   end
 
-  def not_finished
-    self.finished = false
-    save
+  def send_json(json_file)
+    file = File.open("results/#{name}.json","w") do |f|
+      f.write(json_file.to_json)
+    end
+    file.close
+    ResultsMailer.sending_results(name).deliver
   end
 
-  def set_time
-    self.time = @hours.to_i*60 + @minutes.to_i
+  def generate_results_json
+    results.map.with_index do |result,position|
+      {name: result.name, surname:result.surname, position:position+1}
+    end
   end
 
 end

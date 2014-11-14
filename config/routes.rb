@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
   resources :rounds, only: :show
   resources :challanges, only: :update
-  resources :players, only: :index
+  resources :players, only: [:index, :new, :create]
   root to: 'tournaments#index'
 end
