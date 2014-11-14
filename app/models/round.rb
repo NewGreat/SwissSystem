@@ -18,6 +18,10 @@ class Round < ActiveRecord::Base
     } 
   end
 
+  def time_left
+   (tournament.time*60) - (DateTime.now.to_i - created_at.to_i)
+  end
+
   def other_round
     player_list = tournament.players.order(battle_points_sum: :desc, victory_points_sum: :desc).map(&:id)
     player1 = player_list[0] 

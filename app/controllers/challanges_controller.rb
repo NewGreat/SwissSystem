@@ -4,9 +4,20 @@ class ChallangesController < ApplicationController
     @challange = Challange.find(params[:id])
     unless @challange.finished?
       @challange.set_as_finished
-   
       respond_to do |format|
         if @challange.update(challange_params)
+          # if request.xhr?
+          #   unless @challange.tournament.finished?
+          #     unless @challange.round.finished?
+          #       render partial: 'form', locals: { challange: @challange}
+          #     else 
+          #       render tournament_path(@challange.tournament)
+          #     end
+          #   else
+          #     render players_path(tournament_id: @challange.tournament.id), notice: 'Challange was successfully updated. And tournament finished.'
+          #   end
+          # end
+          #end
           format.html do
             unless @challange.tournament.finished?
               redirect_to tournament_path(@challange.tournament), notice: 'Challange was successfully updated.'

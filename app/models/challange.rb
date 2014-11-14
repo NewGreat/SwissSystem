@@ -15,6 +15,10 @@ class Challange < ActiveRecord::Base
   delegate :all_challanges_finished?, :tournament, to: :round, allow_nil: true
 
 
+  def tournament
+    round.tournament
+  end
+
   def current_tournament
     round.tournament
   end

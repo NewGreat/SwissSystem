@@ -67,11 +67,11 @@ class Tournament < ActiveRecord::Base
   end
 
   def send_json(json_file)
-    file = File.open("results/#{name}.json","w") do |f|
+    File.open("results/#{name}.json","w") do |f|
       f.write(json_file.to_json)
     end
-    file.close
     ResultsMailer.sending_results(name).deliver
+    File.delete("results/#{name}.json")
   end
 
   def generate_results_json

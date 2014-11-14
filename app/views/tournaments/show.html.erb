@@ -8,13 +8,28 @@
   
   <%= link_to "Show standings", players_path(tournament_id: @tournament.id) %>
   <% if @tournament.current_round %>
+  <div id="clock">
+  <script>
+    var myCountdown1 = new Countdown({time:<%=@tournament.current_round.time_left%>,width:150, height:40, rangeHi:"hour"});
+  </script>
+  </div>
     <div class="challanges_table">
       <%= render 'challanges_table', current_round: @tournament.current_round %>
     </div>
+
   <% else %>
     <div class="players_table">
-      <%= render 'players_table', tournament: @tournament %>
+      <div class="row">
+        <div class="small-6 columns">
+          <%= render 'players_table', tournament: @tournament %>
+        </div>
+        <div class="small-6 columns">
+          <%= render 'players/player_form', player: @player %>
+        </div>
+      </div>
     </div>
 
   <% end %>
 <% end %>
+<script type="text/javascript">
+</script>

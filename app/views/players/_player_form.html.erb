@@ -1,0 +1,15 @@
+Add a new player:
+<%= form_for(player) do |f| %>
+  <%= f.hidden_field :tournament_id %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name %>
+  </div>
+  <div class="field">
+    <%= f.label :surname %><br>
+    <%= f.text_area :surname %>
+  </div>  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

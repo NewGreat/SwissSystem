@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Swiss" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Creating tournaments with swiss sorting rules" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Swiss" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%# Modernizr is required for Zurb Foundation %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'vendor/modernizr' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
   </head>
   <body>

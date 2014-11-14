@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20141112092000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "finished",         default: false
-    t.integer  "time"
+    t.integer  "time",             default: 60
     t.integer  "max_round_number"
   end
 
