@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 });
 
-$('players_table').on('submit',function(event){
+$('players_table form').on('submit',function(event){
     var $this = $(this)
     var serialized_form = $this.serialize();
     $('#table-wrapper').hide();

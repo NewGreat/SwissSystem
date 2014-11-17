@@ -2,10 +2,15 @@
 <div class="loader">
   <%= image_tag('ajax-loader.gif') %>
 </div>
+        
   <%= form_for (challange) do |f| %>
-    <div class="small-6 columns">
+      <div class="small-6 columns">
       <div class="name">
+      <% unless challange.player2 %>
+           <%= challange.player1.full_name %> has won by a bye
+        <% else %>
       <%="#{challange.player1.full_name}'s" %>
+        <%end %>
       </div>
       <div class="field">
         <%= f.label "victory points" %><br>
@@ -29,7 +34,9 @@
         <%= f.label "battle points" %><br>
         <%= f.text_field :player2_battle_points, disabled:challange.finished %>
       </div>
-    </div>
+    
+      </div>
+   
 
     <% end %>
     <%unless challange.finished %>

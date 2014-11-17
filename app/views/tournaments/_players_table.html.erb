@@ -5,6 +5,4 @@
   <li>Player: <%= player.full_name %> </li>
   <% end %>
 </ul>
-
-<%= link_to 'Add a player', new_player_path(tournament_id: @tournament.id), class: "btn"%>
 <%= link_to 'Start', start_tournament_path(@tournament), class: "btn" %>

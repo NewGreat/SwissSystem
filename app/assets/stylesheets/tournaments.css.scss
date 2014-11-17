@@ -1,3 +1,47 @@
 // Place all the styles related to the tournaments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tournament_show_page {
+  position: static;
+  display: inline-block;
+
+  padding: 0.3em;
+  margin-bottom: 0.3em;
+  border: solid 2px #fff;
+  border-radius: 1em;
+  color: #fff;
+  background-color: #421;
+  text-decoration: none;
+}
+
+#clock {
+  
+  position: relative;
+  float: right;
+
+}
+
+.challange {
+  display: inline-block;
+
+  padding: 0.3em;
+  margin-left: 0.2em;
+  margin-bottom: 0.3em;
+  border-radius: 2em;
+  border: solid 2px #000;
+  color: 'black';
+  background-color: #054;
+  text-decoration: none;
+
+}
+.challange label{
+  color: #EEE;
+  font-size: 10px;
+}
+#clock {
+  
+  position: relative;
+  right: 0px;
+
+}

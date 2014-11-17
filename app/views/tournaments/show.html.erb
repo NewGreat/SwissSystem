@@ -1,13 +1,13 @@
+<div class="small-12 columns, tournament_show_page">
 <% if @tournament.finished %>
   <% redirect_to players_path(tournament_id: @tournament.id) %>
 <% else %>
   <% @tournament.rounds.each do |round| %>
-    <%= link_to "Round number #{round.round_number}", round_path(round) %>
-    <br>
+    <%= link_to "Round number #{round.round_number}", round_path(round), class:"btn" %>
+    <nbsp>
   <% end %>
-  
-  <%= link_to "Show standings", players_path(tournament_id: @tournament.id) %>
   <% if @tournament.current_round %>
+  <%= link_to "Show standings", players_path(tournament_id: @tournament.id), class:"btn" %>
   <div id="clock">
   <script>
     var myCountdown1 = new Countdown({time:<%=@tournament.current_round.time_left%>,width:150, height:40, rangeHi:"hour"});
@@ -31,5 +31,6 @@
 
   <% end %>
 <% end %>
+</div>
 <script type="text/javascript">
 </script>
