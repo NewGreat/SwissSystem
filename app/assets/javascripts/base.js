@@ -37,28 +37,25 @@ $(document).ready(function(){
 
 });
 
-$('players_table form').on('submit',function(event){
-    var $this = $(this)
+$('.players_table').on('submit',function(event){
+    var $this = $(this);
+    var table = $this.parents('.players_table').find('.table_of_players');
+    var loader = $this.parents('.players_table').find('.loader');
     var serialized_form = $this.serialize();
-    $('#table-wrapper').hide();
-    $('#table-wrapper2').show();
-    // infinite_rotate();
-    $('#table-wrapper2').rotate();
-    $('#index_rent_form')[0].reset();
-    $('#index_rent_form').show();
+    table.hide();
+    loader.show();
+    $this.reset();
+    console.log(serialized_form);
         $.ajax({
           url: $this.attr('action'),
           type: 'POST', 
           data: serialized_form, 
-         
-
-          
-
-
           success: function(data,status,xhr) {
-            $('#table-wrapper').show();
-            $('#table-wrapper2').hide();
-            $('#table-wrapper').html(data);
+            table.show();
+            loader.hide();
+         console.log(data);
+           alert(data);
+            $('#players_index').html(data);
           }
         });
     event.preventDefault();

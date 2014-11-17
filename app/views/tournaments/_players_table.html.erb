@@ -1,8 +1,9 @@
-
-
+<div class="loader">
+  <%= image_tag('ajax-loader.gif') %>
+</div>
 <ul>
   <% tournament.players.each do |player| %>
   <li>Player: <%= player.full_name %> </li>
   <% end %>
 </ul>
-<%= link_to 'Start', start_tournament_path(@tournament), class: "btn" %>
+<%= link_to 'Start', start_tournament_path(tournament), class: "btn" %>

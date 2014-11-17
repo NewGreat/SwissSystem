@@ -4,6 +4,9 @@ class Tournament < ActiveRecord::Base
 
   attr_accessor :hours, :minutes
 
+  before_save :set_time
+  validates :name, presence: true
+  validates :max_round_number, numericality: { greater_than: 0}
   has_many :rounds
   has_many :players
   has_many :challanges, through: :rounds
@@ -49,11 +52,11 @@ class Tournament < ActiveRecord::Base
     players.order(battle_points_sum: :desc, victory_points_sum: :desc)
   end
 
-  def set_time(hours, minutes)
-    self.time = hours.to_i*60 + minutes.to_i
-  end
-
   private
+
+  def set_time
+    self.time = @hours*60 + @minutes
+  end
 
   def start
     round = Round.new(round_number:1).save

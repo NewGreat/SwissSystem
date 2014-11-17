@@ -38,7 +38,9 @@ class TournamentsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(tournament_params)
+    @tournament.hours = tournament_params[:hours].to_i
+    @tournament.minutes = tournament_params[:minutes].to_i
+    if @tournament.update_attributes(tournament_params)
       flash[:notice] = "Tournament rules updated"
       redirect_to @tournament
     else
@@ -52,7 +54,8 @@ class TournamentsController < ApplicationController
   
   def create
     @tournament = Tournament.new(tournament_params)
-    @tournament.set_time(tournament_params[:hours],tournament_params[:minutes])
+    @tournament.hours = tournament_params[:hours].to_i
+    @tournament.minutes = tournament_params[:minutes].to_i
     if @tournament.save
       redirect_to tournaments_path
     else
