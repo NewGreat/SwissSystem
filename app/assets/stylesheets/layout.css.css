@@ -1,3 +1,4 @@
+
 .btn {
   display: inline-block;
 
@@ -6,14 +7,12 @@
   margin-bottom: 0.3em;
   border: solid 2px #fff;
   border-radius: 1em;
-
-
-  font: bold 1em $font1;
+  font: bold 1em;
   color: #fff;
-  background-color: #834;
-
+  background-color: #834; 
   text-decoration: none;
 }
+
 .btn2 {
   display: inline-block;
 
@@ -22,11 +21,8 @@
   margin-bottom: 0.3em;
   border: solid 2px #fff;
   border-radius: 1em;
-
-
-  font: bold 1em $font1;
+  font: bold 1em;
   color: #fff;
   background-color: #834;
-
   text-decoration: none;
 }

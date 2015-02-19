@@ -17,12 +17,12 @@ RSpec.describe Tournament, :type => :model do
     end   
 
     it "when it would be last round" do
-      (tournament.round_number.to_i).times do
+      (tournament.max_round_number.to_i).times do
         FactoryGirl.create(:round, tournament_id: tournament.id, finished: true)
       end
-      expect(tournament.rounds.count).to eq tournament.round_number.to_i
+      expect(tournament.rounds.count).to eq tournament.max_round_number.to_i
       tournament.next_round
-      expect(tournament.rounds.count).to eq tournament.round_number.to_i
+      expect(tournament.rounds.count).to eq tournament.max_round_number.to_i
       expect(tournament.finished).to be
     end
   end

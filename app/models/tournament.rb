@@ -4,7 +4,7 @@ class Tournament < ActiveRecord::Base
 
   attr_accessor :hours, :minutes
 
-  before_save :set_time
+  before_create :set_time, if: :hour_and_minute_values_exist?
   validates :name, presence: true
   validates :max_round_number, numericality: { greater_than: 0}
   has_many :rounds
@@ -15,6 +15,10 @@ class Tournament < ActiveRecord::Base
 
   def self.current
     where(finished: false).last
+  end
+
+  def hour_and_minute_values_exist?
+    @hours && @minutes
   end
 
   def next_round

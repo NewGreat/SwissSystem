@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "MyString"
     time 0
     finished false
-    round_number "3"
+    max_round_number "3"
   end
 
   # factory :tournament2 do
