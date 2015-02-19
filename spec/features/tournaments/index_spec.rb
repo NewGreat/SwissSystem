@@ -63,4 +63,16 @@ feature 'Root' do
     visit root_path
     expect(page).to have_content 'ongoing'
   end
+  scenario 'Checking for validity of standings button' do
+    test_tournament = FactoryGirl.create(:tournament, max_round_number: 4)
+    FactoryGirl.create(:player, tournament_id: test_tournament.id, victory_points_sum: 20)
+    FactoryGirl.create(:player, tournament_id: test_tournament.id, )
+    visit tournament_path(test_tournament)
+    click_link('Start')
+    expect(page).to have_content Player.first.name
+    click_link("Show standings")
+    # same as visit players_path(tournament_id: test_tournament.id)
+    expect(page).to have_content "1 #{Player.first.name} #{Player.first.surname} #{Player.first.victory_points_sum}"
+    expect(page).not_to have_content "2 #{Player.first.name} #{Player.first.surname} #{Player.first.victory_points_sum}"
+  end
 end
