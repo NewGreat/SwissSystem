@@ -12,7 +12,7 @@ RSpec.describe Round, :type => :model do
       expect(round.challanges.count).to eq 2
     end
 
-    it "when it woudd be another one" do
+    it "when it would be another one" do
       4.times do
         FactoryGirl.create(:player, tournament_id: tournament.id)
       end

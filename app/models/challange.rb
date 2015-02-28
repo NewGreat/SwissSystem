@@ -9,11 +9,15 @@ class Challange < ActiveRecord::Base
   belongs_to :round
                          # belongs_to :tournament,  through: :round is not a method in rails. 
                          # I have overriden it by method current_tournament
+  
   belongs_to :player1, class_name: 'Player' 
   belongs_to :player2, class_name: 'Player'
 
   delegate :all_challanges_finished?, :tournament, to: :round, allow_nil: true
 
+  def odd?
+    !player2_id
+  end
 
   def tournament
     round.tournament
@@ -50,9 +54,7 @@ class Challange < ActiveRecord::Base
     round.is_finished
   end
 
-  def odd?
-    !player2_id
-  end
+  
     
   def mark_bye
     self.player1_victory_points = 13

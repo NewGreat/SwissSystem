@@ -22,7 +22,7 @@ class ChallangesController < ApplicationController
     params.require(:challange).permit(:player1_victory_points, :player2_victory_points, :player1_battle_points, :player2_battle_points)
   end 
 
-  def redirecting_to_right_path_after_updateing
+  def redirecting_to_right_path_after_updating
     unless @challange.tournament.finished?
       redirect_to tournament_path(@challange.tournament), notice: 'Challange was successfully updated.'
     else
